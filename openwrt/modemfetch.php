@@ -1,28 +1,20 @@
 <?php
-$networkTypes = array(
-	1 => 'GSM',
-	2 => 'GPRS',
-	3 => 'EDGE',
-	4 => 'UMTS',
-	5 => 'HSDPA',
-	6 => 'HSUPA',
-	7 => 'HSPA',
-	9 => 'HSPA+',
-	18 => 'LTE',
-	41 => 'UMTS',
-	42 => 'HSDPA',
-	43 => 'HSUPA',
-	44 => 'HSPA',
-	45 => 'HSPA+',
-	46 => 'DC-HSPA+',
-	61 => 'TD-SCDMA',
-	62 => 'TD-HSDPA',
-	63 => 'TD-HSUPA',
-	64 => 'TD-HSPA',
-	65 => 'TD-HSPA+',
-	101 => 'LTE'
-);
-
+$networkLecture = array();
+$csv = file_get_contents('/root/NetworkNames.csv');
+$csv = explode("\n", $csv);
+array_shift($csv); array_pop($csv);
+foreach($csv as $line) {
+  $data = explode(",", $line);
+  $networkLecture[ intval($data[0]) ] = array(
+    '_' => $data[1],
+    'D' => $data[2],
+    'G' => $data[3],
+    'T' => $data[4],
+    'N' => $data[5],    
+  );
+}
+#print_r($networkLecture);
+#exit;
 
 $res = array();
 
@@ -33,7 +25,10 @@ function fetchTag($xml, $tag) {
   return $res;
 }
 function translateNetworkName($type, $typeex) {
-  return "?";
+  global $networkLecture;
+  if (isset($networkLecture[ $typeex ])) return $networkLecture[ $typeex ];
+  if (isset($networkLecture[ $type ])) return $networkLecture[ $type ];
+  return $networkLecture[0];
 }
 function modemApi($url, $cookie) {
   exec('curl "http://192.168.8.1/api/device/signal" -H "Cookie: ' . $cookie . '" -s | cat -', $output); 
@@ -102,7 +97,7 @@ function fetch() {
   switch ( $Rat ) {
     case 0: $_Rat = '2G'; break;
     case 2: $_Rat = '3G'; break;
-    case 5: $_Rat = 'H'; break;
+    case 5: $_Rat = 'HSPA'; break;
     case 7: $_Rat = '4G'; break;
     default: $_Rat = 'I' . $_Rat; break;
   }
