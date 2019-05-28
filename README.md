@@ -5,7 +5,7 @@ One Paragraph of project description goes here
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-[![project.jpg](Bild)](https://raw.githubusercontent.com/cuddlycheetah/AR750-Hardware-Modifications/master/project.jpg)
+[![project.jpg](Bild)](https://i.imgur.com/dWSZMaj.png)
 
 ### Prerequisites
 
