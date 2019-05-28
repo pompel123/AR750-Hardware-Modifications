@@ -1,6 +1,6 @@
 ID,INTERNAL,Data Capability,Generation,Technology,Full Name
 0,NOSERVICE,0,0G,-,Kein Dienst
-1,GSM,1,2G,"TDMA,CDMA",Global System for Mobile Communication
+1,GSM,1,2G,TDMA|CDMA,Global System for Mobile Communication
 2,GPRS,1,2.5G,GPRS,General Packet Radio Service
 3,EDGE,1,2.75G,EDGE,Enhanced Data Rates for GSM Evolution
 4,WCDMA,1,3G,UMTS>W-CDMA,Wideband Code Division Multiple Access
@@ -18,7 +18,7 @@ ID,INTERNAL,Data Capability,Generation,Technology,Full Name
 16,3xRTT,1,,,3xRTT
 17,HSPA_PLUS_64QAM,1,3.75G,64QAM+MIMO,Evolved High Speed Packet Access
 18,HSPA_PLUS_MIMO,1,3.75G,16QAM+MIMO,Evolved High Speed Packet Access
-19,LTE,1,3.9G,"TDD,FDD",Long-Term Evolution
+19,LTE,1,3.9G,TDD|FDD,Long-Term Evolution
 21,IS95A,1,2G,cdmaOne,Interim Standard-95 A
 22,IS95B,1,2G,cdmaOne,Interim Standard-95 B
 23,CDMA_1x,1,3G,CDMA2000,CDMA_1x
@@ -35,7 +35,7 @@ ID,INTERNAL,Data Capability,Generation,Technology,Full Name
 34,HYBRID_EHRPD_REL_0,1,,,HYBRID_EHRPD_REL_0
 35,HYBRID_EHRPD_REL_A,1,,,HYBRID_EHRPD_REL_A
 36,HYBRID_EHRPD_REL_B,1,,,HYBRID_EHRPD_REL_B
-41,WCDMA,1,3G,UMTS>W-CDMA,Wideband Code Division Multiple Access
+41,WCDMA,1,3G,UMTS>W-CDMA,Wideband Code Division Multiple Access
 42,HSDPA,1,3.5G,UMTS>W-CDMA,High Speed Downlink Packet Access
 43,HSUPA,1,3.5G,UMTS>W-CDMA,High Speed Uplink Packet Access
 44,HSPA,1,3.5G,UMTS>W-CDMA,High Speed Packet Access
@@ -46,5 +46,5 @@ ID,INTERNAL,Data Capability,Generation,Technology,Full Name
 63,TD_HSUPA,1,3.5G,UMTS>W-CDMA,Time Division High Speed Uplink Packet Access
 64,TD_HSPA,1,3.5G,UMTS>W-CDMA,Time Division High Speed Packet Access
 65,TD_HSPA_PLUS,1,3.75G,UMTS>W-CDMA,Time Division Evolved High Speed Packet Access
-81,802_16E,1,802.16,"OFDMA, QPSK",Wireless MAN 802.16
-101,LTE,1,3.9G,"TDD,FDD",Long-Term Evolution
+81,802_16E,1,802.16,OFDMA|QPSK,Wireless MAN 802.16
+101,LTE,1,3.9G,TDD|DD,Long-Term Evolution

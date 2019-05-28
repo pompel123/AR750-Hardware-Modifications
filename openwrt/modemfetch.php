@@ -3,7 +3,8 @@ $networkLecture = array();
 $csv = file_get_contents('/root/NetworkNames.csv');
 $csv = explode("\n", $csv);
 array_shift($csv); array_pop($csv);
-foreach($csv as $line) {
+foreach ($csv as $line) {
+  $line = str_replace(chr( 194 ) . chr( 160 ), ' ', $line);
   $data = explode(",", $line);
   $networkLecture[ intval($data[0]) ] = array(
     '_' => $data[1],
