@@ -5,14 +5,15 @@ One Paragraph of project description goes here
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-[![project.jpg](Bild)](https://i.imgur.com/dWSZMaj.png)
+![project.jpg](https://i.imgur.com/dWSZMaj.png)
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+On the Router you need to have php7 and some modules installed
 
 ```
-Give examples
+opkg update
+opkg install php7 php7-cli php7-mod-json php7-mod-curl
 ```
 
 ### Installing
