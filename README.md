@@ -10,6 +10,13 @@ Fritzing Diagram
 
 Current Project Progress:
 ![Current Project Progress](https://i.imgur.com/BX0IY3g.jpg)
+### Idea
+
+Having a `SSD1306 128x64 I²C Display` on my `GL.iNet AR750`. That displays the status of one or more 4G Modems.
+
+Router Serial Output => ESP8266 Serial Input
+Protocol is JSON
+
 
 ### Prerequisites
 
