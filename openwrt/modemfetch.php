@@ -110,11 +110,9 @@ function fetch() {
     'Name' => fetchTag($currentPLMN, 'FullName'),
     'IP' => fetchTag($monitoringStatus, 'WanIPAddress'),
     'Roaming' => intval(fetchTag($monitoringStatus, 'RoamingStatus')),
-    'Type' => array(
-      'Type' => $_Network_Type,
-      'TypeEx' => $_Network_TypeEx,
-      'Spec' => translateNetworkName($_Network_Type, $_Network_TypeEx),
-    ),
+    '_' => $_Network_Type,
+    '__' => $_Network_TypeEx,
+    'Type' => translateNetworkName($_Network_Type, $_Network_TypeEx),
     'Cell' => intval(fetchTag($deviceSignal, 'cell_id')),
   );
   # Signal
