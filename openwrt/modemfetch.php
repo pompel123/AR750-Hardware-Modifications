@@ -5,6 +5,7 @@ $csv = explode("\n", $csv);
 array_shift($csv); array_pop($csv);
 foreach ($csv as $line) {
   $line = str_replace(chr( 194 ) . chr( 160 ), ' ', $line);
+  $line = str_replace("\r", ' ', $line);
   $data = explode(",", $line);
   $networkLecture[ intval($data[0]) ] = array(
     '_' => $data[1],
