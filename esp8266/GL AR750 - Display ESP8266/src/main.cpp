@@ -113,7 +113,6 @@ void setup() {
 
   Serial.begin(115200);
   Serial.println("Starting\n");
-
   
   display.begin(0x02, 0x3C);
   display.setRotation(2);
@@ -144,13 +143,44 @@ void display0() {
   display.println(backLog[1]);
   display.println(backLog[0]);
 }
-#include <Fonts/FreeSansBold24pt7b.h>
+#include <Fonts/FreeMono9pt7b.h>
+void display1signalbars(int x, int y) {
+  uint8_t signalIcon = modemInfo["Signal"]["Icon"].as<uint8_t>();
+  uint8_t h = 28;
+
+  for (uint8_t i = 0; i < 5; i++) { // Signalbalken
+    uint8_t bw = 6;
+    uint8_t bh = 8 + ((uint8_t)(h / 5) * i);
+    uint8_t bx = 8 * i;
+    uint8_t by = h - bh;
+
+    if (signalIcon > i + 1)
+      display.fillRect(x + bx, y + by, bw, bh, 1);
+    else
+      display.drawRect(x + bx, y + by, bw, bh, 1);
+  }
+  if (modemInfo["Network"]["Roaming"].as<bool>() == true) { // Roaming Indikator
+    display.setTextSize(2);
+    display.setCursor(x, y);
+    display.println("R");
+    display.setTextSize(1);
+  }
+}
 void display1() {
   display.setTextWrap(true);
-  display.setCursor(0, 30);
-  display.setFont(&FreeSansBold24pt7b);
-  display.println("OwO");
-  //display.println(packet[F("Network")][F("Name")]->as<String>());
+  display.setFont(NULL/*&FreeMono9pt7b*/);
+
+  display1signalbars(0, 0);
+
+  String networkName  = modemInfo["Network"]["Name"].as<String>();
+  String networkType_ = modemInfo["Network"]["Type"]["_"].as<String>();
+  String networkIP    = modemInfo["Network"]["IP"].as<String>();
+  int signalRSSI = modemInfo["Signal"]["RSSI"].as<int>();
+
+  display.setCursor(44,  0); display.println(networkName);
+  display.setCursor(44, 10); display.println(networkType_);
+  display.setCursor(44, 20); display.printf("%d dBm\n", signalRSSI);
+  display.setCursor(44, 30); display.printf("IP: %s\n", networkIP);
 }
 void loop () {
   display.clearDisplay();

@@ -1,5 +1,9 @@
 <?php
 /**
+ * TODO: USB Modem Toggle over [/sys/class/gpio/gpio2/value]
+ */
+
+/**
 * https://github.com/HSPDev/Huawei-E5180-API
 */
 class CustomHttpClient
@@ -443,7 +447,11 @@ class Router
 		}
 	}
 }
-
+function ESPMessage($type, $data) {
+	$fp = fopen('/dev/ttyS0', 'w');
+	fwrite($fp, 'ESP' . $type . json_encode($data) . "\n");
+	fclose($fp);
+}
 $networkLecture = array();
 $csv = file_get_contents('/root/NetworkNames.csv');
 $csv = explode("\n", $csv);
@@ -464,7 +472,16 @@ foreach ($csv as $line) {
 
 $router = new Router();
 $router->setAddress('192.168.8.1');
-$router->login('admin', 'admin');
+
+ESPMessage("MODEM", array());
+while (true) {
+	try {
+		$router->login('admin', 'admin');
+		break;
+	} catch (Exception $e) {
+		echo 'Exception abgefangen: ',  $e->getMessage(), "\n";
+	}
+}
 
 $res = array();
 function translateNetworkName($type, $typeex) {
@@ -546,6 +563,7 @@ function fetch() {
   $ECIO = strval($deviceSignal->ecio); $ECIO = substr($ECIO, 0, strpos($ECIO, 'dB'));  // -14dB
 
   $res['Signal'] = array(
+    'Icon' => intval($monitoringStatus->SignalIcon),
     'RSSI' => intval($RSSI),
     'RSCP' => intval($RSCP),
     'ECIO' => intval($ECIO)
@@ -555,12 +573,13 @@ function fetch() {
 }
 
 while (true) {
-  $res = fetch();
-  print_r($res);
-
-  $fp = fopen('/dev/ttyS0', 'w');
-  fwrite($fp, 'ESPMODEM' . json_encode($res) . "\n");
-  fclose($fp);
-
+	try {
+		$res = fetch();
+		print_r($res);
+	
+		ESPMessage("MODEM", $res);
+	} catch (Exception $e) {
+		echo 'Exception abgefangen: ',  $e->getMessage(), "\n";
+	}
   sleep(1);
 }
