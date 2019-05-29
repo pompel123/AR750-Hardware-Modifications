@@ -487,10 +487,6 @@ function fetch() {
 
 	$deviceInformation = $router->generalizedGet('api/device/information');
 	$deviceInformationParams = $router->generalizedGet('config/deviceinformation/add_param.xml');
-	#print_r($deviceInformation);
-	print_r($deviceInformationParams);
-	#exit;
-
   # Connection
   $res['Connection'] = array(
     'Status' => intval($monitoringStatus->ConnectionStatus), # 900 Connecting | 901 Connected | 902 Disconnected | 903 Disconnecting
@@ -538,9 +534,10 @@ function fetch() {
     '_' => $_Network_Type,
     '__' => $_Network_TypeEx,
 		'Type' => translateNetworkName($_Network_Type, $_Network_TypeEx),
-		'Cell' => array(intval('0x'.$deviceSignal->cell_id, 16), strval($deviceSignal->cell_id)),
+		'Numeric' => intval($currentPLMN->Numeric),
+		'Cell' => array(intval('0x'.$deviceInformationParams->cell_id, 16), strval($deviceInformationParams->cell_id)),
 		'LAC' => array(intval('0x'.$deviceInformationParams->lac, 16), strval($deviceInformationParams->lac)),
-		'CNT' => intval($deviceInformationParams->cnt, 10),
+		#'CNT' => intval($deviceInformationParams->cnt, 10),
 	);
 
 	# Signal
