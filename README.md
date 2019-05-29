@@ -30,7 +30,7 @@ On the Router you need to have php7 and some modules installed
 
 ```
 opkg update
-opkg install php7 php7-cli php7-mod-json php7-mod-curl
+opkg install php7 php7-cli php7-mod-json php7-mod-curl php7-mod-simplexml php7-mod-hash
 ```
 
 ### Installing
