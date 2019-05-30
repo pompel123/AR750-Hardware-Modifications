@@ -20,7 +20,7 @@ Protocol is JSON
 
 
 ### Current Project Progress
-![Current Project Progress](https://i.imgur.com/BX0IY3g.jpg)
+![Current Project Progress](https://i.imgur.com/eydpBWI.jpg)
 
 
 

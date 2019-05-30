@@ -120,8 +120,10 @@ void setup() {
   display.clearDisplay();
   display.display();
   display.setTextColor(1);
+  display.ssd1306_command(SSD1306_SETVCOMDETECT);
+  display.ssd1306_command(0x00);
   display.ssd1306_command(SSD1306_SETCONTRAST);
-  display.ssd1306_command(0x05);
+  display.ssd1306_command(0x01);
 
   #ifdef REMOTE_UPLOAD
     setupWifi();
@@ -173,17 +175,22 @@ void display1() {
   display1signalbars(0, 0);
 
   String networkName  = modemInfo["Network"]["Name"].as<String>();
+  String networkTypeG = modemInfo["Network"]["Type"]["G"].as<String>();
   String networkType_ = modemInfo["Network"]["Type"]["_"].as<String>();
   String networkIP    = modemInfo["Network"]["IP"].as<String>();
   int signalRSSI = modemInfo["Signal"]["RSSI"].as<int>();
 
   display.setCursor(44,  0); display.println(networkName);
-  display.setCursor(44, 10); display.println(networkType_);
+  display.setCursor(44, 10); display.printf("%s %s\n", &networkTypeG, &networkType_);
   display.setCursor(44, 20); display.printf("%d dBm\n", signalRSSI);
-  display.setCursor(44, 30); display.printf("IP: %s\n", networkIP);
+  display.setCursor(0, 30); display.printf("IP: %s\n", &networkIP);
 }
 void loop () {
   display.clearDisplay();
+  display.drawPixel(127,0,1);
+  display.drawPixel(127,31,1);
+  display.drawPixel(0,31,1);
+
   switch (displayMode) {
     case 0: display0(); break;
     case 1: display1(); break;
