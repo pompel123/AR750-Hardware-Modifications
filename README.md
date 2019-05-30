@@ -17,6 +17,7 @@ Having a `SSD1306 128x64 I²C Display` on my `GL.iNet AR750`. That displays the 
 Router Serial Output => ESP8266 Serial Input
 Protocol is JSON
 
+the ESP takes care of showing the bootlog and then information about the modem
 
 
 ### Current Project Progress
