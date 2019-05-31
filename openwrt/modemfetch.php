@@ -473,7 +473,7 @@ foreach ($csv as $line) {
 $router = new Router();
 $router->setAddress('192.168.8.1');
 
-ESPMessage("MODEM", array());
+ESPMessage("BOOTLOG", true);
 while (true) {
 	try {
 		$router->login('admin', 'admin');
@@ -483,6 +483,7 @@ while (true) {
 	}
 }
 
+ESPMessage("MODEM", array());
 $res = array();
 function translateNetworkName($type, $typeex) {
   global $networkLecture;
