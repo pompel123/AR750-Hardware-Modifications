@@ -463,10 +463,10 @@ foreach ($csv as $line) {
   $data = explode(",", $line);
   $networkLecture[ intval($data[0]) ] = array(
     '_' => $data[1],
-    'D' => $data[2],
+    //'D' => $data[2],
     'G' => $data[3],
     'T' => $data[4],
-    'N' => $data[5],    
+    //'N' => $data[5],    
   );
 }
 
@@ -482,6 +482,22 @@ while (true) {
 		echo 'Exception abgefangen: ',  $e->getMessage(), "\n";
 	}
 }
+function formatBytes($size, $precision = 1) {
+    $base = log($size, 1024);
+    $suffixes = array('B', 'K', 'M', 'G', 'T');   
+
+    return round(pow(1024, $base - floor($base)), $precision) .' '. $suffixes[floor($base)];
+}
+
+function formatBytesSpeed($size, $precision = 1) {
+	if ($size === 0) return '0 bps';
+	
+	$base = log($size, 1024);
+	$suffixes = array('', 'k', 'M', 'G', 'T');   
+
+	return round(pow(1024, $base - floor($base)), $precision) .' '. $suffixes[floor($base)] . 'bps';
+}
+
 
 ESPMessage("MODEM", array());
 $res = array();
@@ -494,9 +510,6 @@ function translateNetworkName($type, $typeex) {
 function fetch() {
 	global $router;
   $res = array();
-  #global $res;
-
-	echo "requesting...\n";
 
   $deviceSignal = $router->generalizedGet('api/device/signal');
   $monitoringStatus = $router->generalizedGet('api/monitoring/status');
@@ -509,16 +522,16 @@ function fetch() {
   $res['Connection'] = array(
     'Status' => intval($monitoringStatus->ConnectionStatus), # 900 Connecting | 901 Connected | 902 Disconnected | 903 Disconnecting
     'Now' => array(
-      /*'Time' =>*/ intval($trafficStatistics->CurrentConnectTime),
-      /*'Up' =>*/ intval($trafficStatistics->CurrentUpload),
-      /*'Down' =>*/ intval($trafficStatistics->CurrentDownload),
-      /*'UpRate' =>*/ intval($trafficStatistics->CurrentUploadRate),
-      /*'DownRate' =>*/ intval($trafficStatistics->CurrentDownloadRate),
+      /*'Time' =>*/ gmdate("H:i:s", intval($trafficStatistics->CurrentConnectTime)),
+      /*'Up' =>*/ formatBytes(intval($trafficStatistics->CurrentUpload)),
+      /*'Down' =>*/ formatBytes(intval($trafficStatistics->CurrentDownload)),
+      /*'UpRate' =>*/ formatBytesSpeed(intval($trafficStatistics->CurrentUploadRate)),
+      /*'DownRate' =>*/ formatBytesSpeed(intval($trafficStatistics->CurrentDownloadRate)),
     ),
     'Total' => array(
-      /*'Time' =>*/ intval($trafficStatistics->TotalConnectTime),
-      /*'Up' =>*/ intval($trafficStatistics->TotalUpload),
-      /*'Down' =>*/ intval($trafficStatistics->TotalDownload)
+      /*'Time' =>*/ gmdate("H:i:s", intval($trafficStatistics->TotalConnectTime)),
+      /*'Up' =>*/ formatBytes(intval($trafficStatistics->TotalUpload)),
+      /*'Down' =>*/ formatBytes(intval($trafficStatistics->TotalDownload))
     ),
   );
 
@@ -549,8 +562,8 @@ function fetch() {
     'Name' => $_NetworkName,
     'IP' => strval($monitoringStatus->WanIPAddress),
     'Roaming' => intval($monitoringStatus->RoamingStatus),
-    '_' => $_Network_Type,
-    '__' => $_Network_TypeEx,
+    //'_' => $_Network_Type,
+    //'__' => $_Network_TypeEx,
 		'Type' => translateNetworkName($_Network_Type, $_Network_TypeEx),
 		'Numeric' => intval($currentPLMN->Numeric),
 		'Cell' => array(intval('0x'.$deviceInformationParams->cell_id, 16), strval($deviceInformationParams->cell_id)),
@@ -582,5 +595,5 @@ while (true) {
 	} catch (Exception $e) {
 		echo 'Exception abgefangen: ',  $e->getMessage(), "\n";
 	}
-  sleep(1);
+  sleep(0.25);
 }

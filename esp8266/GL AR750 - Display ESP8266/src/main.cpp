@@ -209,15 +209,29 @@ void display1() {
 
   String networkName  = modemInfo["Network"]["Name"].as<String>();
   String networkTypeG = modemInfo["Network"]["Type"]["G"].as<String>();
-  String networkType_ = modemInfo["Network"]["Type"]["_"].as<String>();
+  String networkType_ = modemInfo["Network"]["Type"]["T"].as<String>();
   String networkIP    = modemInfo["Network"]["IP"].as<String>();
   int signalRSSI = modemInfo["Signal"]["RSSI"].as<int>();
 
   display.setCursor(44,  0); display.println(networkName);
-  display.setCursor(44, 10); display.printf("%s %s\n", &networkTypeG, &networkType_);
+  display.setCursor(44, 10); display.print(networkTypeG); display.print(' '); display.println(networkType_);
   display.setCursor(44, 20); display.printf("%d dBm\n", signalRSSI);
   display.setCursor(0, 30); display.print("IP: "); display.println(networkIP);
-  
+
+  //////////////////////////////////////////////////////////////////////////////////////////
+
+  display.drawFastHLine(0, 38, 128, 1);
+  display.drawFastVLine(64, 38, 26, 1);
+  String connectionNow1    = modemInfo["Connection"]["Now"][1].as<String>();
+  String connectionNow2    = modemInfo["Connection"]["Now"][2].as<String>();
+  String connectionNow3    = modemInfo["Connection"]["Now"][3].as<String>();
+  String connectionNow4    = modemInfo["Connection"]["Now"][4].as<String>();
+
+  display.setCursor(5, 42); display.print(connectionNow3); 
+  display.setCursor(69, 42); display.print(connectionNow1);
+
+  display.setCursor(5, 52); display.print(connectionNow4); 
+  display.setCursor(69, 52); display.print(connectionNow2);
 }
 void loop () {
   display.clearDisplay();
