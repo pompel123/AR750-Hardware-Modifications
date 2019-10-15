@@ -6,7 +6,7 @@ One Paragraph of project description goes here
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 Fritzing Diagram
-![Fritzing Diagram](https://i.imgur.com/dWSZMaj.png)
+![Fritzing Diagram](https://github.com/cuddlycheetah/AR750-Hardware-Modifications/blob/readme-update-1/image.png?raw=true)
 
 
 
@@ -28,29 +28,13 @@ the ESP takes care of showing the bootlog and then information about the modem
 ### Prerequisites
 
 On the Router you need to have php7 and some modules installed
-
 ```
 opkg update
 opkg install php7 php7-cli php7-mod-json php7-mod-curl php7-mod-simplexml php7-mod-hash
 ```
 
 ### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+* Execute the PHP Script at boot via an command configured in the web interface
 
 ## License
 
