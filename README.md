@@ -6,8 +6,7 @@ One Paragraph of project description goes here
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 Fritzing Diagram
-![Fritzing Diagram](https://github.com/cuddlycheetah/AR750-Hardware-Modifications/blob/readme-update-1/image.png?raw=true)
-
+![Fritzing Diagram](https://i.imgur.com/dWSZMaj.png)
 
 
 ### Idea
@@ -21,7 +20,7 @@ the ESP takes care of showing the bootlog and then information about the modem
 
 
 ### Current Project Progress
-![Current Project Progress](https://i.imgur.com/eydpBWI.jpg)
+![Current Project Progress](https://github.com/cuddlycheetah/AR750-Hardware-Modifications/blob/readme-update-1/image.png?raw=true)
 
 
 
