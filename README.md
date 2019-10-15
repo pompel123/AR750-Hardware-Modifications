@@ -9,7 +9,6 @@ Fritzing Diagram
 ![Fritzing Diagram](https://i.imgur.com/dWSZMaj.png)
 
 
-
 ### Idea
 
 Having a `SSD1306 128x64 I²C Display` on my `GL.iNet AR750`. That displays the status of one or more 4G Modems.
@@ -21,36 +20,20 @@ the ESP takes care of showing the bootlog and then information about the modem
 
 
 ### Current Project Progress
-![Current Project Progress](https://i.imgur.com/eydpBWI.jpg)
+![Current Project Progress](https://github.com/cuddlycheetah/AR750-Hardware-Modifications/blob/readme-update-1/image.png?raw=true)
 
 
 
 ### Prerequisites
 
 On the Router you need to have php7 and some modules installed
-
 ```
 opkg update
 opkg install php7 php7-cli php7-mod-json php7-mod-curl php7-mod-simplexml php7-mod-hash
 ```
 
 ### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+* Execute the PHP Script at boot via an command configured in the web interface
 
 ## License
 
